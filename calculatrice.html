@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="FR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma calculatrice</title>
+    <style>
+        
+
+    </style>
+</head>
+<body>
+   <div id = "desktop">
+
+
+
+
+    <div id="calculator_instance" style="display: block;">
+        
+
+        <style>
+*{
+            margin: 0;
+            padding: 0;
+            font-family: Arial;
+        }
+ #desktop{
+            display: grid;
+            grid-template-columns: repeat(calc(100vw / 72px), 78px);
+            grid-template-rows: repeat(calc(90vh / 100px), 74px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-image: url('image/clay-banks-u27Rrbs9Dwc-unsplash.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100vw;
+            height: 100vh;
+            grid-auto-flow: column;
+            gap: 18px;
+        }
+               #calculator_instance{
+        width: 400px;
+        height: 425px;
+        position: absolute;
+        left: 100px;
+        top: 100px;
+        background-color: rgba(2, 17, 31 , .3);
+        backdrop-filter: blur(10px);
+        border-radius: 10px;
+        box-shadow: 0px 0px 1px black;
+        padding: 10px;
+    }
+    #calc_header{
+                height: 35px;
+                border-radius: 10px 10px 0px 0px;
+                display: flex;
+                align-items: center;
+
+                            }
+            
+            #icon_calc{
+                width: 25px;
+                height: 25px;
+                position: relative;
+                left: 10px;
+
+
+            }
+            #span_calculatrice{
+                color: rgba(230, 240, 250, 0.95);
+                position: relative;
+                left: 22px;
+                user-select: none;
+            }
+
+            #reduire_calc:hover, #agrandir_calc:hover{
+                background: rgb(216, 220, 221);
+            }
+            #fermer_calc:hover{
+                background: rgb(196, 43, 26);
+
+            }
+            #reduire_calc, #agrandir_calc, #fermer_calc{
+                width: 12px;
+                height: 12px;
+                position: absolute;
+                height: 35px;
+                width: 46px;
+
+                /* Code temporaire */
+                
+                
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            #reduire_calc{
+                right: 94px;
+            }
+            #agrandir_calc{
+                right: 46px;
+            }
+            #fermer_calc{
+                right: 0px;
+                border-radius: 0px 10px 0px 0px;
+            }
+           #standard_mode{
+                position: relative;
+                
+            }
+
+            #standart_title{
+                font-size: 1.7em;
+                user-select: none;
+                position: relative;
+                left: 18px;
+
+            }
+
+            #visible_mode:hover,#openav:hover, #historic:hover{
+                background: rgb(231, 235, 240);
+
+            }
+            #openav{
+                position: relative;
+                left: 10px;
+            }
+            #historic{
+                position: absolute;
+                right: 12px;
+                width: 40px;
+                height: 40px;
+            }
+
+            
+            #visible_mode{
+                position: relative;
+                left: 30px;
+            }
+            #openav, #visible_mode, #historic{
+                width: 40px;
+                height: 40px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                border-radius: 5px;
+                font: 600;
+                font-size: 2em;
+                user-select: none;
+                
+            }
+            #calc_header2{
+                height: 48px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+            }
+
+            #openav img{
+                width: 25px;
+                height: 16px;
+            }
+
+            #calcexe_result{
+        height: 100px;
+
+    }
+
+     #calcexe_result span:nth-child(1){
+        display: inline-block;
+        width: 300px;
+        height: 29px;
+        position: absolute;
+        right: 12px;
+        text-align: right;
+        top: 65px;
+        color: rgba(240, 248, 255, 1);
+        font-size: 20px;
+        user-select: none;
+        font-weight: 500
+     }
+     #calcexe_result span:nth-child(2){
+        display: inline-block;
+        width: 300px;
+        height: 29px;
+        position: absolute;
+        text-align: right;
+        font-size: 29px;
+        font-weight: 600;
+        color: rgb(255, 255, 255);
+        user-select: none;
+
+
+        right: 12px;
+        top: 103px;
+        
+     }
+        #calcul_type{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        height: 30px;
+        gap: 4px;
+
+    }
+    #calcul_type span:hover{
+        background: rgb(231, 235, 240);
+    }
+    #calcul_type span{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 30px;
+        user-select: none;
+        border-radius: 4px;
+    }
+
+
+    
+    #calcexeoperateur{
+        height: 280px;
+        display: grid;
+        grid-template-columns: repeat(4, 100px);
+        grid-template-rows: repeat(6, 48px);
+
+    }
+    #calcexeoperateur span{
+        
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+        border-radius: 5px;
+    }
+
+    
+    #one:hover, #two:hover, #three:hover, #four:hover, #five:hover, #six:hover, #seven:hover, #eight:hover, #nine:hover, #zero:hover, #plus-moins:hover, #coma:hover{
+        background-color: rgba(255, 255, 255, 0.10);
+         border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+#clearE:hover, #clear:hover, #del:hover, #carré:hover{
+    background: rgba(255, 140, 100, 0.18);
+}
+#clearE, #clear, #del, #carré{
+    background: rgba(255, 120, 80, 0.08);
+    color: rgba(255, 160, 130, 0.90);
+    width: 97px;
+}
+
+    #divisé:hover, #plus:hover, #moins:hover, #fois:hover{
+        background-color: rgba(100, 200, 255, 0.15);
+        color: #96DCFF;
+    }
+     #divisé, #plus, #moins, #fois{
+        background-color: rgba(255, 255, 255, 0.06);
+        color: rgba(100, 200, 255, 0.90);
+        width: 97px;
+    }
+
+    #one, #two, #three, #four, #five, #six, #seven, #eight, #nine, #zero, #plus-moins, #coma{
+        background-color: rgba(0, 0, 0, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        color: rgba(220, 230, 240, 0.95);
+        transition: 0.2s ease;
+        width: 97px;
+    }
+    #equal:hover{
+        background-color: rgba(0, 160, 255, 1);
+        box-shadow: 0 0 20px rgba(0, 140, 255, 0.35) ;
+
+    }
+    #equal{
+        background-color: rgba(0, 140, 255, 0.85);
+        color: white;
+        border: none;
+        width: 197px;
+
+       
+    }
+            
+        </style>
+        <div id="calc_header">
+            <img src="image/icons8-calculatrice-96.png" alt="" id="icon_calc">
+            <span id="span_calculatrice">Ma Calculatrice</span>
+            
+
+        </div>
+ 
+<div id="standard_mode">
+
+        <div id="calc_header2">
+
+        </div>
+
+        <div id="calcexe_result">
+            <span>0</span>
+            <span>0</span>
+
+        </div>
+
+
+<style>
+
+</style>
+        <div id="calcexeoperateur">
+            
+            <span id = "clearE">CE</span>
+            <span id="clear">C</span>
+            <span id="del">supp</span>
+            <span id="carré">x²</span>
+            <span id="divisé">/</span>
+            <span id="seven">7</span>
+            <span id="eight">8</span>
+            <span id="nine">9</span>
+            <span id="fois">x</span>
+            <span id="four">4</span>
+            <span id="five">5</span>
+            <span id="six">6</span>
+            <span id="moins">-</span>
+            <span id="one">1</span>
+            <span id="two">2</span>
+            <span id="three">3</span>
+            <span id="plus">+</span>
+            <span id="zero">0</span>
+            <span id="equal">=</span>
+        </div>
+
+
+    </div>
+
+
+</div>
+ 
+  
+   </div>
+
+
+
+
+
+
+
+<script>
+  //////////////////////////////////////////////////////////////////////////
+
+            const calculator_instance = document.getElementById('calculator_instance');
+            const ci_width = calculator_instance.offsetWidth;
+            const calc_header = document.getElementById('calc_header2');
+            calc_header.style.width = ci_width + 'px';
+            
+            function resize(){
+            alert(calculator_instance.offsetWidth)
+            }
+    var values_displayed = 0;
+    var clearE = document.getElementById('clearE');
+    var clear = document.getElementById('clear');
+    var del = document.getElementById('del');
+
+
+
+    const displayer = document.querySelector("#calcexe_result span:nth-child(2)");
+    const result2 = document.querySelector("#calcexe_result span:nth-child(1)");
+
+    const carree = document.getElementById('carré');
+
+    carree.addEventListener('click', ()=>{
+        values_displayed = displayer.innerHTML
+        result2.innerHTML = `sqr(${values_displayed})`
+        values_displayed = parseFloat(values_displayed)
+        values_displayed **= 2
+        values_displayed = String(values_displayed)
+        displayer.innerHTML  = values_displayed
+
+    })
+
+    del.addEventListener('click', ()=>{
+        if(displayer.innerHTML != "0" && displayer.innerHTML.length > 1){
+            displayer.innerHTML = displayer.innerHTML.replace(displayer.innerHTML[displayer.innerHTML.length - 1], '')
+            values_displayed = values_displayed.replace(values_displayed[values_displayed.length - 1], "")
+        }else{
+                displayer.innerHTML = "0"
+}
+        
+})
+
+
+clear.addEventListener('click', ()=>{
+    displayer.innerHTML = '0'
+    result2.innerHTML = ''
+})
+
+clearE.addEventListener('click', ()=>{
+    displayer.innerHTML = '0'
+    
+})
+
+    // Affichage numérique simple
+    
+    
+    var one , two, three, four, five, six, seven, eight, nine, zero;
+    var plus, moins, divisé; fois;
+    let equal = document.getElementById('equal');
+
+    plus = document.getElementById('plus');
+    moins = document.getElementById('moins');
+    divisé = document.getElementById('divisé');
+    fois = document.getElementById('fois');
+    
+
+    one = document.getElementById('one');
+    two = document.getElementById('two');
+    three = document.getElementById('three');
+    four = document.getElementById('four');
+    five = document.getElementById('five');
+    eigth = document.getElementById('eight');
+    six = document.getElementById('six');
+    seven = document.getElementById('seven');
+    nine = document.getElementById('nine');
+    zero = document.getElementById('zero');
+    
+    var cleanvar = true;
+    const num_list1 = ['one' , 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'zero'];
+    const num_list = [one , two, three, four, five, six, seven, eight, nine, zero];
+
+    equal.addEventListener('click',()=>{
+        let operationBase = result2.innerHTML + displayer.innerHTML;
+        
+        let operator;
+        for(let el in operationBase){
+                
+                
+                if(operationBase[el] == "x"){
+                    operator = ["x", el] 
+                }
+                if(operationBase[el] == "+"){
+                    operator = ["+", el] 
+                }
+                if(operationBase[el] == "-"){
+                    operator = ["-", el] 
+                }
+                if(operationBase[el] == "/"){
+                    operator = ["/", el] 
+                }
+        }
+
+
+        if(operationBase.includes('x') || operationBase.includes('-') || operationBase.includes('+') || operationBase.includes('/')){
+           
+            let part1  =  parseInt(displayer.innerHTML)
+            
+            let part2 = parseInt(result2.innerHTML.replace(operator[0], ""))  
+            let operateResult;
+
+            
+            switch(operator[0]){
+                case "+":
+                    console.log("C'est plus !")
+                    operateResult = part2 + part1;
+                    break;
+                case "x":
+                    console.log("C'est fois !")
+                    operateResult = part2 * part1;
+                    break;
+                case "/":
+                    console.log("C'est divisé !")
+                    operateResult = part2 / part1;
+                    break;
+                case "-":
+                    console.log("C'est moins !")
+                    operateResult = part2 - part1;
+                    break;
+            }
+
+                console.log(operateResult)
+                result2.innerHTML = `${part2} ${operator[0]} ${part1} = `
+                displayer.innerHTML = operateResult;
+
+            
+        }
+
+
+        
+    })
+
+
+  
+  //
+    one.addEventListener('click', ()=>{
+        add_screen(one, "1")
+    })
+    two.addEventListener('click', ()=>{
+        add_screen(two, "2")
+    })
+    three.addEventListener('click', ()=>{
+        add_screen(three, "3")
+    })
+    four.addEventListener('click', ()=>{
+        add_screen(four, "4")
+    })
+    five.addEventListener('click', ()=>{
+        add_screen(five, "5")
+    })
+    six.addEventListener('click', ()=>{
+        add_screen(six, "6")
+    })
+    seven.addEventListener('click', ()=>{
+        add_screen(seven, "7")
+    })
+    eigth.addEventListener('click', ()=>{
+        add_screen(eigth, "8")
+    })
+    nine.addEventListener('click', ()=>{
+        add_screen(nine, "9")
+    })
+    zero.addEventListener('click', ()=>{
+        add_screen(zero, "0")
+    })
+    
+    
+    
+    function add_screen(span_clicked_id, value_displayed){
+        let span_clicked = document.getElementById(span_clicked_id)
+        if(displayer.innerHTML == "0" || cleanvar){
+            values_displayed = ""
+        values_displayed = values_displayed + value_displayed
+
+            displayer.innerHTML = "";
+            displayer.innerHTML = values_displayed
+            
+            console.log(`
+            values_displayed = ${typeof values_displayed}
+            value_displayed = ${value_displayed}
+            `)
+
+            cleanvar = false;
+
+        }else{
+            values_displayed = values_displayed + value_displayed
+
+            displayer.innerHTML = values_displayed
+            console.log(`
+            values_displayed = ${values_displayed}
+            value_displayed = ${value_displayed}
+            `)
+
+        }
+
+    }
+
+    function step1_arithm(sign){
+    
+        result2.innerHTML = displayer.innerHTML + ' ' + sign;
+        cleanvar = true;
+    }
+
+    plus.addEventListener('click', ()=>{
+        step1_arithm('+')
+    })
+
+    moins.addEventListener('click', ()=>{
+        step1_arithm('-')
+    })
+
+    fois.addEventListener('click', ()=>{
+        step1_arithm('x')
+    })
+   
+    divisé.addEventListener('click', ()=>{
+        step1_arithm('/')
+    })
+
+
+
+        const carre = document.getElementById("calculator_instance");
+        const headcarre = document.getElementById("calc_header");
+let offsetX = 0;
+let offsetY = 0;
+let isDragging = false;
+
+headcarre.addEventListener("mousedown", (e) => {
+  isDragging = true;
+  offsetX = e.clientX - carre.offsetLeft;
+  offsetY = e.clientY - carre.offsetTop;
+});
+
+document.addEventListener("mousemove", (e) => {
+  if (isDragging) {
+    carre.style.position = 'absolute'
+    carre.style.left = e.clientX - offsetX + "px";
+    carre.style.top = e.clientY - offsetY + "px";
+
+  }
+});
+
+document.addEventListener("mouseup", () => {
+  isDragging = false;
+  
+
+});
+
+
+</script>
+</body>
+    </html>
